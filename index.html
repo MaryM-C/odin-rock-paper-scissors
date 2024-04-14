@@ -3,9 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <title>Rock Paper Scissors</title>
+    <script src="./rock-paper-scissors.js" defer></script>
 </head>
 <body>
-    <script src="./rock-paper-scissors.js"></script>
+    <header>
+        <h1>Rock Paper Scissors</h1>
+    </header>
+    <main>
+        <div>
+            <h2 id="winningStatement">Click any of the buttons below to start</h2>
+        </div>
+        <div class="game-space">
+            <div>
+                <h4>You</h4>
+                <div id="playerWinIndicator" class="chosen-action">
+                    <img id="img-chosen-action" src="./assets/question-mark.png" alt="A question mark">
+                </div>
+            </div>
+            <div>
+                <h3 id="round">Round 1</h3>
+                <h4>Score</h4>
+                <h5 id="scores">0 - 0</h5>
+            </div>
+            <div>
+                <h4>Computer</h4>
+                <div id="compWinIndicator" class="chosen-action">
+                    <img src="./assets/question-mark.png" alt="A question mark">
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <ul>
+                <li>
+                    <div class="stripes">
+                        <input type="image" id="rock" value="Rock" src="./assets/rock.png" alt="Rock hand sign">
+                    </div>
+                </li>
+                <li>
+                    <div class="stripes">
+                        <input type="image" id="paper" value="Paper" src="./assets/paper.png" alt="Paper hand sign">
+                    </div>
+                </li>
+                <li>
+                    <div class="stripes">
+                        <input type="image" id="scissors" value="Scissors" src="./assets/scissors.png" alt="Scissors hand sign">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</main>
+<footer>
+    <ul>
+        <li><a href="https://www.theodinproject.com/" target="_blank" rel="noopener noreferrer">The Odin Project</a></li>
+        <li><a href="https://github.com/MaryM-C" target="_blank" rel="noopener noreferrer">MaryM-C</a></li>
+        <li>Assets by: 
+            <a href="https://thenounproject.com/tanyasolo1986/" target="_blank" rel="noopener noreferrer">Tatyana</a>
+            and
+            <a href="https://thenounproject.com/ameyask/" target="_blank" rel="noopener noreferrer">Ameya SK</a>
+        </li>
+    </ul>
+
+</footer>
 </body>
 </html>
