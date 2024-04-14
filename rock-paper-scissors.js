@@ -1,62 +1,72 @@
 "use strict";
+
 let playerScore = 0;
 let computerScore = 0;
+let roundNo = 1;
+let winnerHeader= document.getElementById('winningStatement');
+
+const btnRock = document.getElementById('rock');
+const btnPaper = document.getElementById('paper');
+const btnScissors = document.getElementById('scissors');
+const imgPlayerAction = document.getElementById("img-chosen-action");
 
 function getComputerChoice() {
-    const action = ["rock", "paper", "scissors"];
+    const action = ["Rock", "Paper", "Scissors"];
     const randomNumber = Math.floor(Math.random() * action.length);
     
     return action[randomNumber];
 }
 
 function whoWins(playerAction, computerAction) {
-    let winningStatement = "";
     const actions = {
-        rock : {weakAgainst: "paper", strongAgainst: "scissors"},
-        paper: {weakAgainst:"scissors", strongAgainst:"rock"},
-        scissors:{weakAgainst:"rock", strongAgainst:"paper"}
+        Rock : {weakAgainst: "Paper", strongAgainst: "Scissors"},
+        Paper: {weakAgainst:"Scissors", strongAgainst:"Rock"},
+        Scissors: {weakAgainst:"Rock", strongAgainst:"Paper"}
     }
 
     if (actions[playerAction].weakAgainst === computerAction) {
-        winningStatement =  "You Lose! " + computerAction + " beats " + playerAction;
-        computerScore +=1;
+        winnerHeader.textContent = "You Lose! " + playerAction + " loses against " + computerAction ;
+        computerScore ++;
     }
 
     if (actions[playerAction].strongAgainst === computerAction) {
-        winningStatement =  "You Win! " +  playerAction + " beats " + computerAction;
-        playerScore+=1;
+        winnerHeader.textContent =  "You Win! " +  playerAction + " beats " + computerAction;
+        playerScore++;
     }
-
-    return winningStatement;
 }
 
 function displayScores() {
-    return "You: " + playerScore + " Computer: " + computerScore;
+    document.getElementById('scores').textContent = playerScore + " - " + computerScore;
 }
 
-function displayFinalWinner(playerScore, computerScore) {
-    if(playerScore == computerScore) {
-        console.log("Nobody Wins!");
-    } else if (playerScore > computerScore) {
-       console.log("Player wins the Game!");
+function displayRoundNo() {
+    document.getElementById('round').textContent = "Round " + roundNo;
+}
+
+function playRound(playerAction) {
+    const computerAction = getComputerChoice();
+    roundNo++;
+
+    if (playerAction == computerAction) {
+        winnerHeader.textContent = "It's a draw."
     } else {
-        console.log("Computer wins the Game!")
-    }
-}
-function playRound(playerAction, computerAction) {
-    if (playerAction.toLowerCase() == computerAction) {
-        return ("It's a Draw");
-    } else {
-        return whoWins(playerAction, computerAction);
-    }
-}
-function playGame() {
-    for (let round = 0; round < 5; round++) {
-        console.log(playRound(prompt(), getComputerChoice()));   
-        console.log(displayScores());
+        whoWins(playerAction, computerAction);
     }
 
-    displayFinalWinner(playerScore, computerScore);
+    displayScores();
+    displayRoundNo();
 }
 
-playGame();
+
+btnRock.addEventListener('click', function() {
+    imgPlayerAction.src = "./assets/rock.png";
+    playRound(btnRock.value);
+});
+btnPaper.addEventListener('click', function() {
+    imgPlayerAction.src = "./assets/paper.png";
+    playRound(btnPaper.value);
+});
+btnScissors.addEventListener('click', function() {
+    imgPlayerAction.src = "./assets/scissors.png";
+    playRound(btnScissors.value);
+});
